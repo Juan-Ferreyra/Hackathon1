@@ -1,0 +1,33 @@
+name: CI - Pruebas Automatizadas
+
+on:
+  push:
+    branches:
+      - main                # Ejecuta el workflow cuando se hace push a la rama main
+  pull_request:
+    branches:
+      - main                # Ejecuta el workflow cuando se abre un PR hacia main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest  # Usa la imagen más reciente de Ubuntu
+    strategy:
+      matrix:
+        python-version: [3.9, 3.10, 3.11]  # Define las versiones de Python a usar
+
+    steps:
+      - name: Checkout del código
+        uses: actions/checkout@v3         # Descarga el código del repositorio
+
+      - name: Configurar Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}  # Configura la versión de Python
+
+      - name: Instalar dependencias
+        run: |
+          python -m pip install --upgrade pip           # Actualiza pip
+
+      - name: Ejecutar pruebas
+        run: |
+          python -m unittest discover -s tests          # Ejecuta las pruebas en la carpeta tests
