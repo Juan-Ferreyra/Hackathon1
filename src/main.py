@@ -1,5 +1,4 @@
-def calculate() -> float:
-    operation = input("Ingrese una operacion matematica: ")
+def calculate(operation) -> float:
     operation = operation.split()
     if (operation[1] == '+'):
         return (operation[0]+operation[2])
