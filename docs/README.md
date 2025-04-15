@@ -1,0 +1,1 @@
+Sebastian Reategui - Soy estudiante de CS y me gusta mucho la carrera, es bastante desafiante pero a la vez muy interesante y divertido.
